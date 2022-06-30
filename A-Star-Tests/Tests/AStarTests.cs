@@ -63,6 +63,7 @@ namespace A_Star_Tests.Tests
 
             nodes.First().FCost.Should().Be(3);
             nodes.Last().FCost.Should().Be(6);
+
             result.FCost.Should().Be(3);
             result.HCost.Should().Be(1);
         }
@@ -108,9 +109,17 @@ namespace A_Star_Tests.Tests
         }
 
         [Test]
-        public void QueryNeighbourNodes()
+        public void QueryNeighbourNodesWithoutDiagonal()
         {
             var neighbours = grid.GetNeighbours(grid.Nodes[4, 4]);
+            neighbours.Count().Should().Be(4);
+        }
+
+        [Test]
+        public void QueryNeighbourNodes()
+        {
+            var neighbours = grid.GetNeighbours(grid.Nodes[4, 4],false);
+            neighbours.Count().Should().Be(8);
         }
 
         [Test]
